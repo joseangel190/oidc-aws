@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: arn:aws:iam::123456789012:role/github-oidc
-        role-duration-seconds: 600
-        aws-region: us-west-2
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/github-oidc
+          role-duration-seconds: 600
+          aws-region: us-west-2
       - name: Test AWS Creds
       run: aws sts get-caller-identity
