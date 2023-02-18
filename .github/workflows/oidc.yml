@@ -1,3 +1,10 @@
+name: iocd-test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   deploy:
     name: Upload to Amazon S3
