@@ -1,23 +1,26 @@
-name: test-oidc
-on:
-  push:
-    branches:
-      - main
-    pull_request:
-    types: [opened, synchronize, reopened] 
-permissions:
-  id-token: write # required to use OIDC authentication
-  contents: read # required to checkout the code from the repo
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Upload to Amazon S3
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - name: AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: arn:aws:iam::123456789012:role/github-oidc
-          role-duration-seconds: 900
-          aws-region: us-west-2
-      - name: Test AWS Creds
-        run: aws sts get-caller-identity
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Configure AWS credentials from Test account
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: arn:aws:iam::111111111111:role/my-github-actions-role-test
+        aws-region: us-east-1
+    - name: Copy files to the test website with the AWS CLI
+      run: |
+        aws s3 sync . s3://my-s3-test-website-bucket
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1-node16
+      with:
+        role-to-assume: arn:aws:iam::222222222222:role/my-github-actions-role-prod
+        role-duration-seconds: 900
+        aws-region: us-west-2
+    - name: Copy files to the production website with the AWS CLI
+      run: aws s3 sync . s3://my-s3-prod-website-bucket
