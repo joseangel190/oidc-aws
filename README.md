@@ -25,7 +25,6 @@ Then you should see something like this:
     "Account": "849514089141",
     "Arn": "arn:aws:sts::849514089141:assumed-role/AdminRole/botocore-session-1222333"
 }
-
 ```
 We run terraform using docker for consistency.
 
@@ -34,7 +33,6 @@ First make sure you build the docker from the main repo directory:
 For example for github_oidc infra:
 ```
 docker build --rm -t github_oidc -f github/Dockerfile .
-
 ```
 Before running docker run, you must export AWS creds, use the following:
 ```
