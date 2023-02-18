@@ -24,7 +24,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1-node16
       with:
-        role-to-assume: arn:aws:sts::849514089141:assumed-role/AdminRole/botocore-session-1676737062
+        role-to-assume: arn:aws:iam::849514089141:role/github-oidc
         role-duration-seconds: 900
         aws-region: us-west-2
     - name: Test AWS Creds

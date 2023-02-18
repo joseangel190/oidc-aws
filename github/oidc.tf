@@ -3,5 +3,5 @@ resource "aws_iam_openid_connect_provider" "github" {
     client_id_list = [
         "sts.amazonaws.com",
     ]
-    thumbprint_list = [ "${env.thumbprint}" ]
+    thumbprint_list = [ var.thumbprint ]
 }

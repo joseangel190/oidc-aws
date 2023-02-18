@@ -40,5 +40,5 @@ eval $(aws-profile export)
 ```
 Now you should be able to run docker using AWS environment variables:
 ```
-docker run  -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN -e TF_VAR_backend_bucket=rbn-infra-prod github_oidc
+docker run  -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN=$AWS_SESSION_TOKEN -e TF_VAR_backend_bucket=andes-infra-prod github_oidc
 ```
