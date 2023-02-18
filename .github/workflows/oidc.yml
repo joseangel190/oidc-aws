@@ -4,13 +4,14 @@ permissions:
   contents: read # required to checkout the code from the repo
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: configure AWS credentials
+      - name: AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::123456789012:role/github-oidc
-          role-duration-seconds: 600
+          role-duration-seconds: 900
           aws-region: us-west-2
       - name: Test AWS Creds
-      run: aws sts get-caller-identity
+        run: aws sts get-caller-identity
